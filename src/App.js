@@ -11,14 +11,9 @@ import './App.css';
 const App = () => {
   const [connect, setConnect] = useState('not connected');
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch('http://localhost:5000/express_backend');
-      const connectData = await response.json();
-      console.log(connectData);
-      setConnect(connectData);
-    }
-    fetchData();
+  useEffect(async () => {
+    const response = await axios('./express_backend');
+    console.log(response);
   },[]);
 
 
