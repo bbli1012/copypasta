@@ -1,5 +1,5 @@
 import { ChatEngine } from 'react-chat-engine';
-import LoginForm from './LoginForm';
+import LoginForm from './components/LoginForm';
 import ChatFeed from './components/ChatFeed';
 import { useEffect , useState } from 'react';
 import axios from 'axios';
@@ -12,10 +12,27 @@ const App = () => {
   const [connect, setConnect] = useState('not connected');
 
   useEffect(async () => {
-    const response = await axios('./express_backend');
+    //const response = await axios('./express_backend');
+    // const response = getData();
+    const response = await axios('./testNewChat');
     console.log(response);
   },[]);
 
+  const getData = async () => {
+
+    const authObject = { 'Project-ID': '2e482801-8d27-4347-a1ce-c97a95ff2b42', 'User-Name': 'blue', 'User-Secret': 'sky'};
+    const bodyObject = {
+      "title": "Surprise Chat",
+      "is_direct_chat": false
+    }
+
+    try {
+        const data = await axios.post('https://api.chatengine.io/chats/', bodyObject, { headers: authObject });
+        return data;
+    } catch (error) {
+        console.log(`new chat error ${error}`);
+    }
+  }
 
   if(!localStorage.getItem('username')) return <LoginForm />
 
@@ -26,7 +43,9 @@ const App = () => {
       </header>
     </div>}**/
     <div>
-      <div>{connect}</div>
+      <div>
+        <button onclick>Click</button>
+      </div>
       <ChatEngine
         height='100vh'
         projectID='2e482801-8d27-4347-a1ce-c97a95ff2b42'
