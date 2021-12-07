@@ -11,11 +11,11 @@ import './App.css';
 const App = () => {
   const [connect, setConnect] = useState('not connected');
 
-  useEffect(async () => {
+  useEffect(() => {
     //const response = await axios('./express_backend');
     // const response = getData();
-    const response = await axios('./testNewChat');
-    console.log(response);
+    // const response = await axios('./testNewChat');
+    // console.log(response);
   },[]);
 
   const getData = async () => {

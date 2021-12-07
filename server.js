@@ -4,6 +4,10 @@ const axios = require('axios');
 const app = express();
 const port = process.env.PORT || 5000;
 
+let getRan = () => {
+
+}
+
 app.get('/express_backend', (req, res) => {
     console.log('hit');
     res.send('hello world')
@@ -16,9 +20,9 @@ app.get('/testNewChat', (req, res) => {
       "is_direct_chat": false
     }
     axios.post('https://api.chatengine.io/chats/', bodyObject, { headers: authObject })
-        .then(data => {
-            console.log('success data is:', data);
-            res.send('great success');
+        .then(body => {
+            console.log('success data is:', body.data);
+            res.send(body.data);
         })
         .catch(error => console.log(`new chat error ${error}`))
 });
